@@ -1,5 +1,8 @@
 # Nicolas Cage
 
+*If you dislike emoji commits or the color pink, turn back now...*
+
+
 ## WT*
 
 This is a basic demonstration of an Angular 1.5 app with ES2015/Babel and

@@ -12,7 +12,11 @@ module.exports = {
       { test: /\.html$/, loader: 'raw' },
       { test: /\.less$/, loader: 'style!css!less' },
       { test: /\.css/, loader: 'style!css' },
-      { test: /\.js$/, loader: 'babel', exclude: [/client\/lib/, /node_modules/, /\.spec\.js/] }
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        exclude: [/client\/lib/, /node_modules/, /\.spec\.js/]
+      }
     ]
   }
 };

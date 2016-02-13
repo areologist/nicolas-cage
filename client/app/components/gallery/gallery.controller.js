@@ -1,17 +1,17 @@
-class HomeController {
+class GalleryController {
   constructor(giphy) {
     this.giphy = giphy;
-    this.title = 'Nicolas Cage';
+    this.title = 'Gallery';
     this.stickers = [];
     this.loadStickers();
   }
 
   loadStickers() {
-    this.giphy.getFeatured()
+    this.giphy.getCage()
       .then(data => this.stickers = data);
   }
 }
 
-HomeController.$inject = ['giphy'];
+GalleryController.$inject = ['giphy'];
 
-export {HomeController};
+export {GalleryController};

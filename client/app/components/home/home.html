@@ -1,0 +1,15 @@
+<div class="home">
+
+  <h1>{{$ctrl.title}}</h1>
+
+  <p>
+    If this isn't awesome I don't know what is.
+  </p>
+
+  <h2>Featured</h2>
+
+  <div class="featured">
+    <sticker ng-repeat="item in $ctrl.stickers track by $index" sticker="item"></sticker>
+  </div>
+
+</div>

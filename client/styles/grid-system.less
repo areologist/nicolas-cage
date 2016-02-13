@@ -1,0 +1,80 @@
+/*
+ Super minimal grid system
+ */
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+  @media (min-width: 550px) {
+    width: 80%;
+  }
+  @media (min-width: 400px) {
+    width: 85%;
+    padding: 0;
+  }
+}
+.row {
+  display: block;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.column,
+.columns {
+  width: 100%;
+  float: left;
+  box-sizing: border-box;
+  @media (min-width: 520px) {
+    &.one,
+    &.two,
+    &.three,
+    &.four {
+      width: 48%;
+    }
+  }
+  @media (min-width: 780px) {
+    margin-left: 4%;
+    &:first-child {
+      margin-left: 0;
+    }
+    &.one {
+      width: 4.667%;
+    }
+    &.two {
+      width: 13.334%;
+    }
+    &.three {
+      width: 22%;
+    }
+    &.four {
+      width: 30.667%;
+    }
+    &.five {
+      width: 39.334%;
+    }
+    &.six {
+      width: 48%;
+    }
+    &.seven {
+      width: 56.667%;
+    }
+    &.eight {
+      width: 65.334%;
+    }
+    &.nine {
+      width: 74.0%;
+    }
+    &.ten {
+      width: 82.667%;
+    }
+    &.eleven {
+      width: 91.334%;
+    }
+    &.twelve {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}

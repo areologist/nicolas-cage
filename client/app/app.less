@@ -3,4 +3,22 @@
 .content {
   padding: 15px;
   min-height: 280px;
+  position: relative;
+  [ui-view] {
+    &.ng-enter {
+      transition: all .5s ease-in-out;
+    }
+    &.ng-enter {
+      opacity: 0;
+    }
+    &.ng-enter-active {
+      opacity: 1;
+    }
+    &.ng-leave {
+      opacity: 1;
+    }
+    &.ng-leave-active {
+      opacity: 0;
+    }
+  }
 }

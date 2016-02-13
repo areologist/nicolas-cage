@@ -6,12 +6,12 @@ import {GalleryController} from './gallery.controller';
 
 describe('Gallery', () => {
   let $rootScope;
-  let makeController;
+  let controllerCtor;
 
   beforeEach(window.module(gallery.name));
   beforeEach(inject(_$rootScope_ => {
     $rootScope = _$rootScope_;
-    makeController = (injectables) => {
+    controllerCtor = (injectables) => {
       return new GalleryController(injectables);
     };
   }))
@@ -24,9 +24,7 @@ describe('Gallery', () => {
 
   describe('component', () => {
     let sut;
-    beforeEach(() => {
-      sut = galleryComponent();
-    });
+    beforeEach(() => sut = galleryComponent());
 
     it('should have the right controller', () => {
       expect(sut.controller).toEqual(GalleryController);
@@ -34,8 +32,10 @@ describe('Gallery', () => {
   });
 
   describe('controller', () => {
+    let controller;
+    beforeEach(() => controller = controllerCtor());
+
     it('should have gallery items', () => {
-      const controller = makeController();
       expect(typeof controller.stickers).toBe('object');
       expect(controller.stickers.length).toBeDefined();
     });

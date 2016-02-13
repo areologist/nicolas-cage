@@ -87,3 +87,9 @@ Where each functional area or feature of the application gets its own
 `components/` and `common/` directories (i.e., resources shared between
 components within that area), with a root `shared/` for cross-cutting
 concerns.
+
+## Props
+
+* [Giphy API](https://github.com/Giphy/GiphyAPI)
+* [Open Movie Database](https://www.omdbapi.com)
+* [Scott Moss](https://twitter.com/scotups)

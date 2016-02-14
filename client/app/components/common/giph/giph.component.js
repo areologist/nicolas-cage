@@ -6,7 +6,7 @@ export const giphComponent = () => {
     template,
     restrict: 'E',
     scope: {
-      giph: '='
+      giph: '<'
     },
     controller: angular.noop,
     controllerAs: '$ctrl',

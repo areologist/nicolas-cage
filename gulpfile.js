@@ -4,15 +4,12 @@ var browser = require('browser-sync');
 var webpack = require('webpack-stream');
 var todo    = require('gulp-todoist');
 
-/*
-map of paths for using with the tasks below
- */
 var paths = {
   entry: 'client/app/app.js',
   app: ['client/app/**/*.{js,less,html}', 'client/styles/**/*.less'],
   js: 'client/app/**/*!(.spec.js).js',
   less: ['client/app/**/*.less', 'client/style/**/*.less'],
-  toCopy: ['client/index.html', 'client/assets/**/*'],
+  toCopy: ['client/index.html', 'client/assets/images/*'],
   html: ['client/index.html', 'client/app/**/*.html'],
   dest: 'dist'
 };
@@ -39,17 +36,11 @@ gulp.task('serve', function() {
   });
 });
 
-/*
-simple task to copy over needed files to dist
- */
 gulp.task('copy', function() {
-  return gulp.src(paths.toCopy, { base: 'client' })
+  return gulp.src(paths.toCopy, { base: 'client/' })
     .pipe(gulp.dest(paths.dest));
 });
 
-/*
-task to watch files for changes and call build and copy tasks
- */
 gulp.task('watch', function() {
   gulp.watch(paths.app, ['build', browser.reload]);
   gulp.watch(paths.toCopy, ['copy', browser.reload]);

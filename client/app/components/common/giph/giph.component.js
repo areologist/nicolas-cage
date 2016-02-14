@@ -19,7 +19,7 @@ export const giphComponent = () => {
 const giphLink = (scope, element, attrs) => {
   const image = new Image();
   const onload = () => {
-    element.attr('class', element.attr('class').replace(' preload', ''));
+    element[0].classList.remove('preload');
     element[0].querySelector('img').src = image.src;
   };
   image.addEventListener('load', onload);

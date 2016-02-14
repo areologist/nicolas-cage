@@ -1,7 +1,6 @@
 const giphyApi = ($http, $q, constants, giphyCache) => {
 
-  // let's build a cache of 500 cages
-  const _cacheSize = 500;
+  const _cacheSize = constants.giphy_cache_size;
 
   const getCage = (limitTo = 25, offset = 0) => {
     if (!giphyCache.loaded()) {

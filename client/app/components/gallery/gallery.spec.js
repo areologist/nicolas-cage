@@ -36,8 +36,8 @@ describe('Gallery', () => {
     beforeEach(() => controller = controllerCtor());
 
     it('should have gallery items', () => {
-      expect(typeof controller.stickers).toBe('object');
-      expect(controller.stickers.length).toBeDefined();
+      expect(typeof controller.giphs).toBe('object');
+      expect(controller.giphs.length).toBeDefined();
     });
   });
 });

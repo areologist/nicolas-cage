@@ -1,9 +1,9 @@
 import angular from 'angular';
 import {galleryComponent} from './gallery.component';
-import {sticker} from '../common/sticker/sticker';
+import {giph} from '../common/giph/giph';
 
 export const gallery = angular.module('gallery', [
-  sticker.name
+  giph.name
 ])
 .config(($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('gallery', {

@@ -1,0 +1,20 @@
+.giph {
+  display: inline-block;
+  float: left;
+  margin: 15px;
+  border-radius: 6px;
+  background-clip: border-box;
+  overflow: hidden;
+  img {
+    display: block;
+  }
+  &.preload {
+    min-width: 200px;
+    min-height: 180px;
+    background-image: url('/assets/images/cage.png');
+    background-position: center center;
+    img {
+      opacity: 0.2;
+    }
+  }
+}

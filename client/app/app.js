@@ -1,4 +1,5 @@
 import 'normalize.css';
+import 'font-awesome-webpack';
 
 import {appComponent} from './app.component';
 

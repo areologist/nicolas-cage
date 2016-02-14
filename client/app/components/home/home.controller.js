@@ -1,17 +1,17 @@
 class HomeController {
-  constructor(giphy) {
-    this.giphy = giphy;
+  constructor(giphyApi) {
+    this.giphy = giphyApi;
     this.title = 'Nicolas Cage';
-    this.stickers = [];
-    this.loadStickers();
+    this.giphs = [];
+    this.loadGiphs();
   }
 
-  loadStickers() {
-    this.giphy.getFeatured()
-      .then(data => this.stickers = data);
+  loadGiphs() {
+    this.giphy.getRandomized(4)
+      .then(data => this.giphs = data);
   }
 }
 
-HomeController.$inject = ['giphy'];
+HomeController.$inject = ['giphyApi'];
 
 export {HomeController};

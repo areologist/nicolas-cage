@@ -1,3 +1,25 @@
 .about {
-  //
+  .frame {
+    padding: 10px;
+    img {
+      border-radius: 50%;
+      overflow: hidden;
+      display: block;
+      margin: 0 auto;
+      height: 120px;
+      transition: all .3s ease-in-out;
+      &:hover {
+        height: 400px;
+        border-radius: 15px;
+      }
+    }
+  }
+  .caption {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    font-style: italic;
+    color: hotpink;
+    font-size: 0.8em;
+  }
 }

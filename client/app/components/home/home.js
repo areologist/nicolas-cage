@@ -1,9 +1,9 @@
 import angular from 'angular';
 import {homeComponent} from './home.component';
-import {sticker} from '../common/sticker/sticker';
+import {giph} from '../common/giph/giph';
 
 export const home = angular.module('home', [
-  sticker.name
+  giph.name
 ])
 .config(($stateProvider, $urlRouterProvider) => {
   $urlRouterProvider.otherwise('/');

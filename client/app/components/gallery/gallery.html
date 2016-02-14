@@ -2,8 +2,45 @@
 
   <h1>{{$ctrl.title}}</h1>
 
-  <div class="stickers">
-    <sticker ng-repeat="item in $ctrl.stickers" sticker="item"></sticker>
+  <div class="row">
+
+    <div class="column text-center">
+
+      <div class="input-group hide">
+        <button type="button" name="button" ng-click="$ctrl.prev()"
+          ng-class="{'disabled': !$ctrl.hasPrev()}">
+          Prev
+        </button>
+        <button type="button" name="button" ng-click="$ctrl.next()">
+          Next
+        </button>
+      </div>
+
+      <div class="input-group">
+        <button type="button" name="button" ng-click="$ctrl.loadRandom()">
+          <i class="fa fa-random"></i>
+          Randomize
+        </button>
+      </div>
+
+      <div class="input-group">
+        <label for="pageSize">Results </label>
+        <select id="pageSize" class="form-control"
+          ng-model="$ctrl.pageSizeVM" ng-change="$ctrl.updatePageSize()">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="giphs">
+    <giph ng-repeat="item in $ctrl.giphs" giph="item"></giph>
   </div>
 
 </div>

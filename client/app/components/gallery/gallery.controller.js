@@ -1,17 +1,27 @@
 class GalleryController {
-  constructor(giphy) {
-    this.giphy = giphy;
+  constructor(giphyApi) {
+    this.giphy = giphyApi;
     this.title = 'Gallery';
-    this.stickers = [];
-    this.loadStickers();
+    this.giphs = [];
+
+    this.pageSizeVM = '10';
+    this.pageSize = 10;
+    this.offset = 0;
+
+    this.loadRandom();
   }
 
-  loadStickers() {
-    this.giphy.getCage()
-      .then(data => this.stickers = data);
+  loadRandom() {
+    this.giphy.getRandomized(this.pageSize)
+      .then(data => this.giphs = data);
+  }
+
+  updatePageSize() {
+    this.pageSize = +this.pageSizeVM;
+    this.loadRandom();
   }
 }
 
-GalleryController.$inject = ['giphy'];
+GalleryController.$inject = ['giphyApi'];
 
 export {GalleryController};

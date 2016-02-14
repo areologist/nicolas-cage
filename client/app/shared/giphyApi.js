@@ -1,17 +1,25 @@
-const giphy = ($http, constants) => {
+const giphyApi = ($http, $q, constants, giphyCache) => {
 
-  const getCage = (imageKey = 'fixed_height', limitTo = 25, offset = 0) => {
-    return $http.get(buildSearchUrl('nicolas+cage', limitTo, offset))
-      .then(({data: {data}}) => data.map(item => item.images[imageKey]));
+  const _cacheSize = constants.giphy_cache_size;
+
+  const getCage = (limitTo = 25, offset = 0) => {
+    if (!giphyCache.loaded()) {
+      return $http.get(buildSearchUrl('nicolas+cage', _cacheSize))
+        .then(({data: {data}}) => {
+          giphyCache.load(data);
+          return giphyCache.take(limitTo, offset);
+        });
+    }
+    return $q.when(giphyCache.take(limitTo, offset));
   };
 
   const getById = id => {
     console.log('getById: ', id);
   };
 
-  const getFeatured = () => {
-    return getCage()
-      .then(all => pickRandom(all, 6));
+  const getRandomized = (limitTo = 10) => {
+    return getCage(_cacheSize)
+      .then(all => pickRandom(all, limitTo));
   };
 
   // private functions
@@ -42,9 +50,9 @@ const giphy = ($http, constants) => {
 
   // exposed functions
 
-  return {getCage, getById, getFeatured};
+  return {getCage, getById, getRandomized};
 };
 
-giphy.$inject = ['$http', 'constants'];
+giphyApi.$inject = ['$http', '$q', 'constants', 'giphyCache'];
 
-export {giphy};
+export {giphyApi};

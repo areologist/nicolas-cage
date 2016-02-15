@@ -5,16 +5,14 @@ import {GalleryController} from './gallery.controller';
 // contains lame tests, but you get the idea
 
 describe('Gallery', () => {
-  let $rootScope;
   let controllerCtor;
 
   beforeEach(window.module(gallery.name));
-  beforeEach(inject(_$rootScope_ => {
-    $rootScope = _$rootScope_;
+  beforeEach(() => {
     controllerCtor = (injectables) => {
       return new GalleryController(injectables);
     };
-  }))
+  })
 
   describe('module', () => {
     it('should have an appropriate name', () => {

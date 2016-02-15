@@ -1,6 +1,11 @@
 node_modules
 *.log
 DS_Store
-dist/
 client/lib
 *.sh
+.babelrc
+*.md
+gulpfile.js
+package.json
+webpack.config.js
+client

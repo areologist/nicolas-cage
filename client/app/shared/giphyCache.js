@@ -26,13 +26,13 @@ const giphyCache = () => {
       id: giph.id,
       fixedHeight: {
         url: fixedh.url,
-    	  width: fixedh.width,
-    	  height: fixedh.height
+        width: fixedh.width,
+        height: fixedh.height
       },
       original: {
         url: orig.url,
-    	  width: orig.width,
-    	  height: orig.height
+        width: orig.width,
+        height: orig.height
       }
     };
   };

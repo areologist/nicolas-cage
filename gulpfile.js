@@ -1,8 +1,8 @@
-var gulp    = require('gulp');
-var sync    = require('run-sequence');
-var browser = require('browser-sync');
-var webpack = require('webpack-stream');
-var todo    = require('gulp-todoist');
+var gulp    = require('gulp'),
+    sync    = require('run-sequence'),
+    browser = require('browser-sync'),
+    webpack = require('webpack-stream'),
+    eslint = require('gulp-eslint');
 
 var paths = {
   entry: 'client/app/app.js',
@@ -14,12 +14,14 @@ var paths = {
   dest: 'dist'
 };
 
-gulp.task('todo', function() {
-  return gulp.src(paths.js)
-    .pipe(todo({silent: false, verbose: true}));
+gulp.task('lint', function() {
+    return gulp.src(['client/app/**/*.js'])
+      .pipe(eslint())
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError());
 });
 
-gulp.task('build', ['todo'], function() {
+gulp.task('build', ['lint'], function() {
   return gulp.src(paths.entry)
     .pipe(webpack(require('./webpack.config')))
     .pipe(gulp.dest(paths.dest));

@@ -6,9 +6,9 @@ import {giphyCache} from './giphyCache';
 import {giphyApi} from './giphyApi';
 
 export const shared = angular.module('shared', [
-    navbar.name,
-    footer.name
-  ])
-  .constant('constants', constants)
-  .factory('giphyCache', giphyCache)
-  .factory('giphyApi', giphyApi);
+  navbar.name,
+  footer.name
+])
+.constant('constants', constants)
+.factory('giphyCache', giphyCache)
+.factory('giphyApi', giphyApi);

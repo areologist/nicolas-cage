@@ -40086,7 +40086,7 @@
 	var navbarComponent = exports.navbarComponent = {
 	  template: _navbar2.default,
 	  bindings: {
-	    links: '='
+	    links: '<'
 	  }
 	};
 

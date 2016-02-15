@@ -40027,7 +40027,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	exports.shared = undefined;
 	
@@ -40592,7 +40592,7 @@
 	    template: _giph2.default,
 	    restrict: 'E',
 	    scope: {
-	      giph: '='
+	      giph: '<'
 	    },
 	    controller: angular.noop,
 	    controllerAs: '$ctrl',
@@ -40605,7 +40605,7 @@
 	var giphLink = function giphLink(scope, element, attrs) {
 	  var image = new Image();
 	  var onload = function onload() {
-	    element.attr('class', element.attr('class').replace(' preload', ''));
+	    element[0].classList.remove('preload');
 	    element[0].querySelector('img').src = image.src;
 	  };
 	  image.addEventListener('load', onload);

@@ -1,8 +1,9 @@
+/*eslint-disable */
 var gulp    = require('gulp'),
     sync    = require('run-sequence'),
     browser = require('browser-sync'),
     webpack = require('webpack-stream'),
-    eslint = require('gulp-eslint');
+    eslint  = require('gulp-eslint');
 
 var paths = {
   entry: 'client/app/app.js',

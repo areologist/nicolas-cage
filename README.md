@@ -10,8 +10,8 @@ component architecture.
 Intentionally absurd to reinforce that this is **not a seed project**.
 
 *Infrastructure for serious app missing, such as proper build system,
-tests, a legit data access layer, etc.; to say nothing of ridiculous nature of
-the app.*
+tests, test runner, a legit data access layer, etc.; to say nothing of
+the goofy nature of the app.*
 
 For a legit seed project with similar stack check out
 [NG6-starter](https://github.com/AngularClass/NG6-starter)

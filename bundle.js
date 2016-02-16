@@ -40526,10 +40526,14 @@
 	    this.giphy = giphyApi;
 	    this.title = 'Nicolas Cage';
 	    this.giphs = [];
-	    this.loadGiphs();
 	  }
 	
 	  _createClass(HomeController, [{
+	    key: '$onInit',
+	    value: function $onInit() {
+	      this.loadGiphs();
+	    }
+	  }, {
 	    key: 'loadGiphs',
 	    value: function loadGiphs() {
 	      var _this = this;
@@ -40590,13 +40594,14 @@
 	var giphComponent = exports.giphComponent = function giphComponent() {
 	  return {
 	    template: _giph2.default,
-	    restrict: 'E',
+	    controller: function controller() {},
+	
+	    controllerAs: '$ctrl',
 	    scope: {
 	      giph: '<'
 	    },
-	    controller: angular.noop,
-	    controllerAs: '$ctrl',
 	    bindToController: true,
+	    restrict: 'E',
 	    replace: true,
 	    link: giphLink
 	  };
@@ -40605,9 +40610,13 @@
 	var giphLink = function giphLink(scope, element, attrs) {
 	  var image = new Image();
 	  var onload = function onload() {
-	    element[0].classList.remove('preload');
-	    element[0].querySelector('img').src = image.src;
+	    var elem = element[0];
+	    elem.classList.remove('preload');
+	    elem.querySelector('img').src = image.src;
 	  };
+	  element.on('$destroy', function () {
+	    return image.removeEventListener('load', onload);
+	  });
 	  image.addEventListener('load', onload);
 	  image.src = scope.$ctrl.giph.fixedHeight.url;
 	};
@@ -40789,11 +40798,14 @@
 	    this.pageSizeVM = '10';
 	    this.pageSize = 10;
 	    this.offset = 0;
-	
-	    this.loadRandom();
 	  }
 	
 	  _createClass(GalleryController, [{
+	    key: '$onInit',
+	    value: function $onInit() {
+	      this.loadRandom();
+	    }
+	  }, {
 	    key: 'loadRandom',
 	    value: function loadRandom() {
 	      var _this = this;

@@ -13,6 +13,9 @@ Intentionally absurd to reinforce that this is **not a seed project**.
 tests, a legit data access layer, etc.; to say nothing of ridiculous nature of
 the app.*
 
+For a legit seed project with similar stack check out
+[NG6-starter](https://github.com/AngularClass/NG6-starter)
+
 ## Resources
 
 *   [Angular 1.5 Components](https://docs.angularjs.org/guide/component)

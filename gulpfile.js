@@ -16,10 +16,10 @@ var paths = {
 };
 
 gulp.task('lint', function() {
-    return gulp.src(['client/app/**/*.js'])
-      .pipe(eslint())
-      .pipe(eslint.format())
-      .pipe(eslint.failAfterError());
+  return gulp.src(['client/app/**/*.js'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
 });
 
 gulp.task('build', ['lint'], function() {

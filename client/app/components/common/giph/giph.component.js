@@ -4,13 +4,13 @@ import template from './giph.html';
 export const giphComponent = () => {
   return {
     template,
-    restrict: 'E',
+    controller() {},
+    controllerAs: '$ctrl',
     scope: {
       giph: '<'
     },
-    controller: angular.noop,
-    controllerAs: '$ctrl',
     bindToController: true,
+    restrict: 'E',
     replace: true,
     link: giphLink
   };
@@ -19,9 +19,11 @@ export const giphComponent = () => {
 const giphLink = (scope, element, attrs) => {
   const image = new Image();
   const onload = () => {
-    element[0].classList.remove('preload');
-    element[0].querySelector('img').src = image.src;
+    const elem = element[0];
+    elem.classList.remove('preload');
+    elem.querySelector('img').src = image.src;
   };
+  element.on('$destroy', () => image.removeEventListener('load', onload));
   image.addEventListener('load', onload);
   image.src = scope.$ctrl.giph.fixedHeight.url;
 };

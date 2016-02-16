@@ -7,7 +7,9 @@ class GalleryController {
     this.pageSizeVM = '10';
     this.pageSize = 10;
     this.offset = 0;
+  }
 
+  $onInit() {
     this.loadRandom();
   }
 

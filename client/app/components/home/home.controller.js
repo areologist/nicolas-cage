@@ -3,6 +3,9 @@ class HomeController {
     this.giphy = giphyApi;
     this.title = 'Nicolas Cage';
     this.giphs = [];
+  }
+
+  $onInit() {
     this.loadGiphs();
   }
 

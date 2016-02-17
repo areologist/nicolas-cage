@@ -13,14 +13,10 @@ const giphyApi = ($http, $q, constants, giphyCache) => {
     return $q.when(giphyCache.take(limitTo, offset));
   };
 
-  const getById = id => {
-    console.log('getById: ', id);
-  };
+  const getById = id => giphyCache.find(['id', id]);
 
-  const getRandomized = (limitTo = 10) => {
-    return getCage(_cacheSize)
-      .then(all => pickRandom(all, limitTo));
-  };
+  const getRandomized = (limitTo = 10) =>
+    getCage(_cacheSize).then(all => pickRandom(all, limitTo));
 
   // private functions
 

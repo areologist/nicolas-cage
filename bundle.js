@@ -40246,6 +40246,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+	
 	var giphyCache = function giphyCache() {
 	
 	  var _loaded = false;
@@ -40267,6 +40270,17 @@
 	      return g !== null;
 	    });
 	    _loaded = true;
+	  };
+	
+	  var find = function find(_ref) {
+	    var _ref2 = _slicedToArray(_ref, 2);
+	
+	    var key = _ref2[0];
+	    var value = _ref2[1];
+	
+	    return _cache.find(function (item) {
+	      return item[key] === value;
+	    });
 	  };
 	
 	  // private functions
@@ -40292,7 +40306,7 @@
 	    };
 	  };
 	
-	  return { loaded: loaded, load: load, take: take };
+	  return { loaded: loaded, load: load, take: take, find: find };
 	};
 	
 	exports.giphyCache = giphyCache;
@@ -40310,6 +40324,9 @@
 	
 	  var _cacheSize = constants.giphy_cache_size;
 	
+	  /**
+	   * Returns a set of Cage giphs based on limitTo and offset args
+	   */
 	  var getCage = function getCage() {
 	    var limitTo = arguments.length <= 0 || arguments[0] === undefined ? 25 : arguments[0];
 	    var offset = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
@@ -40325,13 +40342,18 @@
 	    return $q.when(giphyCache.take(limitTo, offset));
 	  };
 	
+	  /**
+	   * Finds and returns a single giph by id
+	   */
 	  var getById = function getById(id) {
-	    console.log('getById: ', id);
+	    return giphyCache.find(['id', id]);
 	  };
 	
+	  /**
+	   * Returns a randomized set of Cage giphs of max size limitTo
+	   */
 	  var getRandomized = function getRandomized() {
 	    var limitTo = arguments.length <= 0 || arguments[0] === undefined ? 10 : arguments[0];
-	
 	    return getCage(_cacheSize).then(function (all) {
 	      return pickRandom(all, limitTo);
 	    });
@@ -40608,17 +40630,18 @@
 	};
 	
 	var giphLink = function giphLink(scope, element, attrs) {
+	  var giphUrl = scope.$ctrl.giph.fixedHeight.url;
 	  var image = new Image();
 	  var onload = function onload() {
 	    var elem = element[0];
 	    elem.classList.remove('preload');
-	    elem.querySelector('img').src = image.src;
+	    elem.querySelector('img').src = giphUrl;
 	  };
+	  image.addEventListener('load', onload);
 	  element.on('$destroy', function () {
 	    return image.removeEventListener('load', onload);
 	  });
-	  image.addEventListener('load', onload);
-	  image.src = scope.$ctrl.giph.fixedHeight.url;
+	  image.src = giphUrl;
 	};
 
 /***/ },

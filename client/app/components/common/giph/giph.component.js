@@ -17,13 +17,14 @@ export const giphComponent = () => {
 };
 
 const giphLink = (scope, element, attrs) => {
+  const giphUrl = scope.$ctrl.giph.fixedHeight.url;
   const image = new Image();
   const onload = () => {
     const elem = element[0];
     elem.classList.remove('preload');
-    elem.querySelector('img').src = image.src;
+    elem.querySelector('img').src = giphUrl;
   };
-  element.on('$destroy', () => image.removeEventListener('load', onload));
   image.addEventListener('load', onload);
-  image.src = scope.$ctrl.giph.fixedHeight.url;
+  element.on('$destroy', () => image.removeEventListener('load', onload));
+  image.src = giphUrl;
 };

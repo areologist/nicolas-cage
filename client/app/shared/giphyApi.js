@@ -2,6 +2,9 @@ const giphyApi = ($http, $q, constants, giphyCache) => {
 
   const _cacheSize = constants.giphy_cache_size;
 
+  /**
+   * Returns a set of Cage giphs based on limitTo and offset args
+   */
   const getCage = (limitTo = 25, offset = 0) => {
     if (!giphyCache.loaded()) {
       return $http.get(buildSearchUrl('nicolas+cage', _cacheSize))
@@ -13,14 +16,17 @@ const giphyApi = ($http, $q, constants, giphyCache) => {
     return $q.when(giphyCache.take(limitTo, offset));
   };
 
-  const getById = id => {
-    console.log('getById: ', id);
-  };
+  /**
+   * Finds and returns a single giph by id
+   */
+  const getById = id => giphyCache.find(['id', id]);
 
-  const getRandomized = (limitTo = 10) => {
-    return getCage(_cacheSize)
-      .then(all => pickRandom(all, limitTo));
-  };
+  /**
+   * Returns a randomized set of Cage giphs of max size limitTo
+   */
+  const getRandomized = (limitTo = 10) =>
+    getCage(_cacheSize).then(all => pickRandom(all, limitTo));
+
 
   // private functions
 

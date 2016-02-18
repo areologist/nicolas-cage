@@ -9,9 +9,13 @@ const giphyCache = () => {
     return _cache.slice(offset, offset + limitTo);
   };
 
-  const load = (data) => {
+  const load = data => {
     _cache = data.map(mapGiph).filter(g => g !== null);
     _loaded = true;
+  };
+
+  const find = ([key, value]) => {
+    return _cache.find(item => item[key] === value);
   };
 
   // private functions
@@ -37,7 +41,7 @@ const giphyCache = () => {
     };
   };
 
-  return {loaded, load, take};
+  return {loaded, load, take, find};
 };
 
 export {giphyCache};

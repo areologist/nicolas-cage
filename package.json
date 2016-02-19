@@ -1,7 +1,7 @@
 {
   "name": "nicolas-cage",
   "version": "1.0.0",
-  "description": "",
+  "description": "cage style: angular 1.5 using es2015 and babel with webpack",
   "main": "index.js",
   "scripts": {
     "start": "gulp"

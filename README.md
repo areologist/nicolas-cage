@@ -18,22 +18,12 @@ For a legit seed project with similar stack check out
 
 ## Resources
 
-*   [Angular 1.5 Components](https://docs.angularjs.org/guide/component)
-
-    *   [Stateless Components](https://toddmotto.com/stateless-angular-components)
-    *   [$onInit syntax etc](https://toddmotto.com/on-init-require-object-syntax-angular-component/)
-    *   [One-way data binding](https://toddmotto.com/one-way-data-binding-in-angular-1-5/)
-    *   [Awesome AngularJS](https://github.com/gianarb/awesome-angularjs)
-
-
-*   [Babel](https://babeljs.io)
-
-    *   [ES2015 Cheat Sheet](https://github.com/DrkSephy/es6-cheatsheet)
-
-
-*   [Webpack](https://webpack.github.io)
-
-    *   [Beginner Webpack Tutorial](https://github.com/AriaFallah/WebpackTutorial)
+* [Angular 1.5 Components](https://docs.angularjs.org/guide/component)
+    * [Awesome AngularJS](https://github.com/gianarb/awesome-angularjs)
+* [Babel](https://babeljs.io/)
+    * [ES2015 Cheat Sheet](https://github.com/DrkSephy/es6-cheatsheet)
+* [Webpack](https://webpack.github.io/)
+    * [Beginner Webpack Tutorial](https://github.com/AriaFallah/WebpackTutorial)
 
 ## Notes
 

@@ -40060,9 +40060,15 @@
 	});
 	exports.navbar = undefined;
 	
+	var _angular = __webpack_require__(41);
+	
+	var _angular2 = _interopRequireDefault(_angular);
+	
 	var _navbar = __webpack_require__(48);
 	
-	var navbar = exports.navbar = angular.module('navbar', []).component('navbar', _navbar.navbarComponent);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var navbar = exports.navbar = _angular2.default.module('navbar', []).component('navbar', _navbar.navbarComponent);
 
 /***/ },
 /* 48 */
@@ -40147,9 +40153,15 @@
 	});
 	exports.footer = undefined;
 	
+	var _angular = __webpack_require__(41);
+	
+	var _angular2 = _interopRequireDefault(_angular);
+	
 	var _footer = __webpack_require__(53);
 	
-	var footer = exports.footer = angular.module('footer', []).component('footer', _footer.footerComponent);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var footer = exports.footer = _angular2.default.module('footer', []).component('footer', _footer.footerComponent);
 
 /***/ },
 /* 53 */
@@ -40250,21 +40262,29 @@
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 	
 	var giphyCache = function giphyCache() {
-	
 	  var _loaded = false;
 	  var _cache = [];
+	  var mapGiph = undefined;
 	
+	  /**
+	   * Returns true if cache has been initialized and is ready.
+	   */
 	  var loaded = function loaded() {
 	    return _loaded;
 	  };
 	
+	  /**
+	   * Returns array of items from cache based on limitTo and offset (start).
+	   */
 	  var take = function take() {
 	    var limitTo = arguments.length <= 0 || arguments[0] === undefined ? 25 : arguments[0];
 	    var offset = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-	
 	    return _cache.slice(offset, offset + limitTo);
 	  };
 	
+	  /**
+	   * Populates cache from data arg and inits.
+	   */
 	  var load = function load(data) {
 	    _cache = data.map(mapGiph).filter(function (g) {
 	      return g !== null;
@@ -40272,12 +40292,15 @@
 	    _loaded = true;
 	  };
 	
+	  /**
+	   * Returns item(s) from cache where specified key value equals
+	   * specified value.
+	   */
 	  var find = function find(_ref) {
 	    var _ref2 = _slicedToArray(_ref, 2);
 	
 	    var key = _ref2[0];
 	    var value = _ref2[1];
-	
 	    return _cache.find(function (item) {
 	      return item[key] === value;
 	    });
@@ -40285,7 +40308,7 @@
 	
 	  // private functions
 	
-	  var mapGiph = function mapGiph(giph) {
+	  mapGiph = function mapGiph(giph) {
 	    if (giph.type !== 'gif' || giph.rating === 'r') {
 	      return null;
 	    }
@@ -40321,11 +40344,12 @@
 	  value: true
 	});
 	var giphyApi = function giphyApi($http, $q, constants, giphyCache) {
-	
 	  var _cacheSize = constants.giphy_cache_size;
+	  var _pickRandom = undefined;
+	  var buildSearchUrl = undefined;
 	
 	  /**
-	   * Returns a set of Cage giphs based on limitTo and offset args
+	   * Returns a set of Cage giphs based on limitTo and offset args.
 	   */
 	  var getCage = function getCage() {
 	    var limitTo = arguments.length <= 0 || arguments[0] === undefined ? 25 : arguments[0];
@@ -40343,44 +40367,45 @@
 	  };
 	
 	  /**
-	   * Finds and returns a single giph by id
+	   * Finds and returns a single giph by id.
 	   */
 	  var getById = function getById(id) {
 	    return giphyCache.find(['id', id]);
 	  };
 	
 	  /**
-	   * Returns a randomized set of Cage giphs of max size limitTo
+	   * Returns a randomized set of Cage giphs of max size limitTo.
 	   */
 	  var getRandomized = function getRandomized() {
 	    var limitTo = arguments.length <= 0 || arguments[0] === undefined ? 10 : arguments[0];
 	    return getCage(_cacheSize).then(function (all) {
-	      return pickRandom(all, limitTo);
+	      return _pickRandom(all, limitTo);
 	    });
 	  };
 	
 	  // private functions
 	
-	  var pickRandom = function pickRandom(array) {
-	    var length = arguments.length <= 1 || arguments[1] === undefined ? 1 : arguments[1];
+	  _pickRandom = function pickRandom(array) {
+	    var len = arguments.length <= 1 || arguments[1] === undefined ? 1 : arguments[1];
 	    var res = arguments.length <= 2 || arguments[2] === undefined ? [] : arguments[2];
 	
-	    if (length === 0 || array.length < length) {
+	    if (len === 0 || array.length < len) {
 	      return res;
 	    }
+	    var length = len;
 	    var index = Math.floor(Math.random() * array.length);
 	    if (res.indexOf(array[index]) === -1) {
 	      res.push(array[index]);
 	      length -= 1;
 	    }
-	    return pickRandom(array, length, res);
+	    return _pickRandom(array, length, res);
 	  };
 	
-	  var buildSearchUrl = function buildSearchUrl(keyword, limit, offset) {
-	    var giphy_api_url = constants.giphy_api_url;
-	    var giphy_api_key = constants.giphy_api_key;
+	  buildSearchUrl = function buildSearchUrl(keyword, limit, offset) {
+	    var apiUrl = constants.giphy_api_url;
+	    var apiKey = constants.giphy_api_key;
 	
-	    var result = giphy_api_url + '?q=' + keyword + '&api_key=' + giphy_api_key;
+	    var result = apiUrl + '?q=' + keyword + '&api_key=' + apiKey;
 	    if (limit) {
 	      result += '&limit=' + limit;
 	    }
@@ -40561,7 +40586,8 @@
 	      var _this = this;
 	
 	      this.giphy.getRandomized(4).then(function (data) {
-	        return _this.giphs = data;
+	        _this.giphs = data;
+	        return _this.giphs;
 	      });
 	    }
 	  }]);
@@ -40614,6 +40640,23 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var giphComponent = exports.giphComponent = function giphComponent() {
+	  // This is our contrived link function to show a component that requires
+	  // more than module.component() accommodates.
+	  var giphLink = function giphLink(scope, element) {
+	    var giphUrl = scope.$ctrl.giph.fixedHeight.url;
+	    var image = new Image();
+	    var onload = function onload() {
+	      var elem = element[0];
+	      elem.classList.remove('preload');
+	      elem.querySelector('img').src = giphUrl;
+	    };
+	    image.addEventListener('load', onload);
+	    element.on('$destroy', function () {
+	      return image.removeEventListener('load', onload);
+	    });
+	    image.src = giphUrl;
+	  };
+	
 	  return {
 	    template: _giph2.default,
 	    controller: function controller() {},
@@ -40627,21 +40670,6 @@
 	    replace: true,
 	    link: giphLink
 	  };
-	};
-	
-	var giphLink = function giphLink(scope, element, attrs) {
-	  var giphUrl = scope.$ctrl.giph.fixedHeight.url;
-	  var image = new Image();
-	  var onload = function onload() {
-	    var elem = element[0];
-	    elem.classList.remove('preload');
-	    elem.querySelector('img').src = giphUrl;
-	  };
-	  image.addEventListener('load', onload);
-	  element.on('$destroy', function () {
-	    return image.removeEventListener('load', onload);
-	  });
-	  image.src = giphUrl;
 	};
 
 /***/ },
@@ -40717,7 +40745,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var gallery = exports.gallery = _angular2.default.module('gallery', [_giph.giph.name]).config(function ($stateProvider, $urlRouterProvider) {
+	var gallery = exports.gallery = _angular2.default.module('gallery', [_giph.giph.name]).config(function ($stateProvider) {
 	  $stateProvider.state('gallery', {
 	    url: '/gallery',
 	    template: '<gallery></gallery>'
@@ -40834,7 +40862,8 @@
 	      var _this = this;
 	
 	      this.giphy.getRandomized(this.pageSize).then(function (data) {
-	        return _this.giphs = data;
+	        _this.giphs = data;
+	        return _this.giphs;
 	      });
 	    }
 	  }, {
@@ -40871,7 +40900,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var about = exports.about = _angular2.default.module('about', []).config(function ($stateProvider, $urlRouterProvider) {
+	var about = exports.about = _angular2.default.module('about', []).config(function ($stateProvider) {
 	  $stateProvider.state('about', {
 	    url: '/about',
 	    template: '<about></about>'

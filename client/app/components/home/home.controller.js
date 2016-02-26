@@ -10,11 +10,8 @@ class HomeController {
   }
 
   loadGiphs() {
-    this.giphy.getRandomized(4)
-      .then(data => {
-        this.giphs = data;
-        return this.giphs;
-      });
+    this.giphy.getRandomized({ limitTo: 4 })
+      .then(data => (this.giphs = data));
   }
 }
 

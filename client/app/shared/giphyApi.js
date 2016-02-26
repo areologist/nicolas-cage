@@ -1,20 +1,23 @@
+import 'babel-polyfill'; // for async/await
+
 const giphyApi = ($http, $q, constants, giphyCache) => {
   const _cacheSize = constants.giphy_cache_size;
   let pickRandom;
   let buildSearchUrl;
 
   /**
-   * Returns a set of Cage giphs based on limitTo and offset args.
+   * Returns a list of Cage giphs based on optional `limitTo` and `offset`
+   * properties of optional `options` object.
    */
-  const getCage = (limitTo = 25, offset = 0) => {
+  const getCage = ({ limitTo = 5, offset = 0 } = {}) => {
     if (!giphyCache.loaded()) {
       return $http.get(buildSearchUrl('nicolas+cage', _cacheSize))
         .then(({ data: { data } }) => {
           giphyCache.load(data);
-          return giphyCache.take(limitTo, offset);
+          return giphyCache.take({ limitTo, offset });
         });
     }
-    return $q.when(giphyCache.take(limitTo, offset));
+    return $q.when(giphyCache.take({ limitTo, offset }));
   };
 
   /**
@@ -25,9 +28,29 @@ const giphyApi = ($http, $q, constants, giphyCache) => {
   /**
    * Returns a randomized set of Cage giphs of max size limitTo.
    */
-  const getRandomized = (limitTo = 10) =>
-    getCage(_cacheSize).then(all => pickRandom(all, limitTo));
+  const getRandomized = ({ limitTo = 5 } = {}) =>
+    getCage({ limitTo: _cacheSize }).then(all => pickRandom(all, limitTo));
 
+  /**
+   * Experimental functions
+   *
+   * Included to demonstrate async/await function over traditional promise
+   * pattern. (Won't work properly in ng 1.x due to digest cycle, though.)
+   */
+
+  async function getCageAsync({ limitTo = 5, offset = 0 } = {}) {
+    if (!giphyCache.loaded()) {
+      const url = buildSearchUrl('nicolas+cage', _cacheSize);
+      const { data: { data } } = await $http.get(url);
+      giphyCache.load(data);
+    }
+    return giphyCache.take({ limitTo, offset });
+  }
+
+  async function getRandom({ limitTo = 5 } = {}) {
+    const all = await getCageAsync({ limitTo: _cacheSize });
+    return pickRandom(all, limitTo);
+  }
 
   // private functions
 
@@ -56,9 +79,9 @@ const giphyApi = ($http, $q, constants, giphyCache) => {
     return result;
   };
 
-  // exposed functions
+  // member functions
 
-  return { getCage, getById, getRandomized };
+  return { getCage, getById, getRandomized, getCageAsync, getRandom };
 };
 
 giphyApi.$inject = ['$http', '$q', 'constants', 'giphyCache'];

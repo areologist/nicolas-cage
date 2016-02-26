@@ -1,6 +1,7 @@
 class GalleryController {
-  constructor(giphyApi) {
+  constructor(giphyApi, $rootScope) {
     this.giphy = giphyApi;
+    this.$rootScope = $rootScope;
     this.title = 'Gallery';
     this.giphs = [];
 
@@ -13,12 +14,12 @@ class GalleryController {
     this.loadRandom();
   }
 
-  loadRandom() {
-    this.giphy.getRandomized(this.pageSize)
-      .then(data => {
-        this.giphs = data;
-        return this.giphs;
-      });
+  async loadRandom() {
+    const data = await this.giphy.getRandom({ limitTo: this.pageSize });
+    this.giphs = data;
+    // just a demonstration of async/await -- don't recommend using this
+    // in ng 1.x due to the digest cycle and bullshit like this:
+    this.$rootScope.$apply();
   }
 
   updatePageSize() {
@@ -27,6 +28,6 @@ class GalleryController {
   }
 }
 
-GalleryController.$inject = ['giphyApi'];
+GalleryController.$inject = ['giphyApi', '$rootScope'];
 
 export { GalleryController };

@@ -1,6 +1,6 @@
 import angular from 'angular';
-import {homeComponent} from './home.component';
-import {giph} from '../common/giph/giph';
+import { homeComponent } from './home.component';
+import { giph } from '../common/giph/giph';
 
 export const home = angular.module('home', [
   giph.name

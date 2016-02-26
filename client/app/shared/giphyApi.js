@@ -1,14 +1,15 @@
 const giphyApi = ($http, $q, constants, giphyCache) => {
-
   const _cacheSize = constants.giphy_cache_size;
+  let pickRandom;
+  let buildSearchUrl;
 
   /**
-   * Returns a set of Cage giphs based on limitTo and offset args
+   * Returns a set of Cage giphs based on limitTo and offset args.
    */
   const getCage = (limitTo = 25, offset = 0) => {
     if (!giphyCache.loaded()) {
       return $http.get(buildSearchUrl('nicolas+cage', _cacheSize))
-        .then(({data: {data}}) => {
+        .then(({ data: { data } }) => {
           giphyCache.load(data);
           return giphyCache.take(limitTo, offset);
         });
@@ -17,12 +18,12 @@ const giphyApi = ($http, $q, constants, giphyCache) => {
   };
 
   /**
-   * Finds and returns a single giph by id
+   * Finds and returns a single giph by id.
    */
   const getById = id => giphyCache.find(['id', id]);
 
   /**
-   * Returns a randomized set of Cage giphs of max size limitTo
+   * Returns a randomized set of Cage giphs of max size limitTo.
    */
   const getRandomized = (limitTo = 10) =>
     getCage(_cacheSize).then(all => pickRandom(all, limitTo));
@@ -30,10 +31,11 @@ const giphyApi = ($http, $q, constants, giphyCache) => {
 
   // private functions
 
-  const pickRandom = (array, length = 1, res = []) => {
-    if (length === 0 || array.length < length) {
+  pickRandom = (array, len = 1, res = []) => {
+    if (len === 0 || array.length < len) {
       return res;
     }
+    let length = len;
     const index = Math.floor(Math.random() * array.length);
     if (res.indexOf(array[index]) === -1) {
       res.push(array[index]);
@@ -42,9 +44,9 @@ const giphyApi = ($http, $q, constants, giphyCache) => {
     return pickRandom(array, length, res);
   };
 
-  const buildSearchUrl = (keyword, limit, offset) => {
-    const {giphy_api_url, giphy_api_key} = constants;
-    let result = `${giphy_api_url}?q=${keyword}&api_key=${giphy_api_key}`;
+  buildSearchUrl = (keyword, limit, offset) => {
+    const { giphy_api_url: apiUrl, giphy_api_key: apiKey } = constants;
+    let result = `${apiUrl}?q=${keyword}&api_key=${apiKey}`;
     if (limit) {
       result += `&limit=${limit}`;
     }
@@ -52,13 +54,13 @@ const giphyApi = ($http, $q, constants, giphyCache) => {
       result += `&offset=${offset}`;
     }
     return result;
-  }
+  };
 
   // exposed functions
 
-  return {getCage, getById, getRandomized};
+  return { getCage, getById, getRandomized };
 };
 
 giphyApi.$inject = ['$http', '$q', 'constants', 'giphyCache'];
 
-export {giphyApi};
+export { giphyApi };

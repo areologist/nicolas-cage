@@ -1,7 +1,7 @@
 import angular from 'angular';
-import {home} from './home/home';
-import {gallery} from './gallery/gallery';
-import {about} from './about/about';
+import { home } from './home/home';
+import { gallery } from './gallery/gallery';
+import { about } from './about/about';
 
 const components = angular.module('app.components', [
   home.name,
@@ -9,4 +9,4 @@ const components = angular.module('app.components', [
   gallery.name
 ]);
 
-export {components};
+export { components };

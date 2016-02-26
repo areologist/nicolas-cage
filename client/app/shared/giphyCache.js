@@ -1,26 +1,36 @@
 const giphyCache = () => {
-
   let _loaded = false;
   let _cache = [];
+  let mapGiph;
 
+  /**
+   * Returns true if cache has been initialized and is ready.
+   */
   const loaded = () => _loaded;
 
-  const take = (limitTo = 25, offset = 0) => {
-    return _cache.slice(offset, offset + limitTo);
-  };
+  /**
+   * Returns array of items from cache based on limitTo and offset (start).
+   */
+  const take = (limitTo = 25, offset = 0) =>
+    _cache.slice(offset, offset + limitTo);
 
+  /**
+   * Populates cache from data arg and inits.
+   */
   const load = data => {
     _cache = data.map(mapGiph).filter(g => g !== null);
     _loaded = true;
   };
 
-  const find = ([key, value]) => {
-    return _cache.find(item => item[key] === value);
-  };
+  /**
+   * Returns item(s) from cache where specified key value equals
+   * specified value.
+   */
+  const find = ([key, value]) => _cache.find(item => item[key] === value);
 
   // private functions
 
-  const mapGiph = (giph) => {
+  mapGiph = (giph) => {
     if (giph.type !== 'gif' || giph.rating === 'r') {
       return null;
     }
@@ -41,7 +51,7 @@ const giphyCache = () => {
     };
   };
 
-  return {loaded, load, take, find};
+  return { loaded, load, take, find };
 };
 
-export {giphyCache};
+export { giphyCache };

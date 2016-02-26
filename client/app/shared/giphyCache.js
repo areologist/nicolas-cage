@@ -9,9 +9,10 @@ const giphyCache = () => {
   const loaded = () => _loaded;
 
   /**
-   * Returns array of items from cache based on limitTo and offset (start).
+   * Returns array of items from cache based on optional limitTo and offset
+   * props of opts arg.
    */
-  const take = (limitTo = 25, offset = 0) =>
+  const take = ({ limitTo = 25, offset = 0 } = {}) =>
     _cache.slice(offset, offset + limitTo);
 
   /**

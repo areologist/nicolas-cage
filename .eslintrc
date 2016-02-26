@@ -1,0 +1,26 @@
+{
+  "extends": "airbnb/base",
+  "rules": {
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "max-params": [1, 4],
+    "max-len": [1, 80],
+    "max-depth": [1, 3],
+    "comma-dangle": 0,
+    "complexity": [1, 10],
+    "arrow-spacing": 2,
+    "constructor-super": 2,
+    "no-class-assign": 1,
+    "no-const-assign": 2,
+    "no-this-before-super": 2,
+    "no-var": 2,
+    "object-shorthand": [2, "always"],
+    "prefer-arrow-callback": 2,
+    "prefer-const": 1,
+    "prefer-spread": 1,
+    "prefer-template": 1,
+    "require-yield": 2
+  },
+  "plugins": [
+    "babel"
+  ]
+}

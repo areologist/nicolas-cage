@@ -11,10 +11,13 @@ class HomeController {
 
   loadGiphs() {
     this.giphy.getRandomized(4)
-      .then(data => this.giphs = data);
+      .then(data => {
+        this.giphs = data;
+        return this.giphs;
+      });
   }
 }
 
 HomeController.$inject = ['giphyApi'];
 
-export {HomeController};
+export { HomeController };

@@ -15,7 +15,10 @@ class GalleryController {
 
   loadRandom() {
     this.giphy.getRandomized(this.pageSize)
-      .then(data => this.giphs = data);
+      .then(data => {
+        this.giphs = data;
+        return this.giphs;
+      });
   }
 
   updatePageSize() {
@@ -26,4 +29,4 @@ class GalleryController {
 
 GalleryController.$inject = ['giphyApi'];
 
-export {GalleryController};
+export { GalleryController };

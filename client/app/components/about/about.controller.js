@@ -5,4 +5,4 @@ class AboutController {
   }
 }
 
-export {AboutController};
+export { AboutController };

@@ -24,6 +24,7 @@ For a legit seed project with similar stack check out
     * [ES2015 Cheat Sheet](https://github.com/DrkSephy/es6-cheatsheet)
 * [Webpack](https://webpack.github.io/)
     * [Beginner Webpack Tutorial](https://github.com/AriaFallah/WebpackTutorial)
+    * [Excellent Webpack intro from **Pro React**](http://www.pro-react.com/materials/appendixA/)
 
 ## Notes
 

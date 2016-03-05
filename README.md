@@ -428,4 +428,10 @@ Which is used on the gallery controller like this:
 Also note the [Airbnb rules for ESLint](https://github.com/airbnb/javascript). See the `.eslintrc` file for details, including some overrides.
 
 
+### Future Topics
 
+* Running 1.5+ alongside ng 2.
+* Example of refactoring from 1.5 to 2.
+* Using unidirectional data flow with 1.5 components; i.e., Redux architecture. E.g., see [ng-redux](https://github.com/wbuchwalter/ng-redux) and [redux-ui-router](https://github.com/neilff/redux-ui-router).
+* Also approaches to reactive data flow. E.g., RxJS, Cycle.js.
+* Plus declarative data fetching via Relay & GraphQL, or possible RxJS-based Falcor approach.

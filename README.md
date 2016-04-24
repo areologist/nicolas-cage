@@ -4,10 +4,7 @@
 
 ## WT*
 
-This is a basic demonstration of an Angular 1.5 app with ES2015/Babel and
-component architecture.
-
-Intentionally absurd to reinforce that this is **not a seed project**.
+This is a basic demonstration of an Angular 1.5 app with ES2015/Babel and component structure.
 
 *Infrastructure for serious app missing, such as proper build system,
 tests, test runner, a legit data access layer, etc.; to say nothing of
@@ -18,6 +15,7 @@ For a legit seed project with similar stack check out
 
 ## Resources
 
+* [Slides from my talk that used snippets from this repo](https://drive.google.com/file/d/0B8MlaW2Dz1EAZ1BtemZBMzRNaDQ/view)
 * [Angular 1.5 Components](https://docs.angularjs.org/guide/component)
     * [Awesome AngularJS](https://github.com/gianarb/awesome-angularjs)
 * [Babel](https://babeljs.io/)
